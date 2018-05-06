@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory name="lsaxton1_Assignment9_SessionFactory">
+  <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+  <property name="hibernate.connection.password">mpscc911</property>
+  <property name="hibernate.connection.url">jdbc:mysql://itss-mpscc911.caoqtjduchaz.us-east-2.rds.amazonaws.com:3306/mpscc911</property>
+  <property name="hibernate.connection.username">mpscc911</property>
+  <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+  <mapping class="business.Order" resource="business/Order.hbm.xml"/>
+  <mapping class="business.Payment" resource="business/Payment.hbm.xml"/>
+  <mapping class="business.Product" resource="business/Product.hbm.xml"/>
+  <mapping class="business.User" resource="business/User.hbm.xml"/>
+ </session-factory>
+</hibernate-configuration>

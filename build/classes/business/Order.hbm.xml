@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 29, 2018 1:56:28 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="business.Order" table="ORDER">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <one-to-one name="user" class="business.User"></one-to-one>
+        <one-to-one name="product" class="business.Product"></one-to-one>
+        <property name="quantity" type="int">
+            <column name="QUANTITY" />
+        </property>
+        <property name="costEach" type="double">
+            <column name="COSTEACH" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 29, 2018 1:56:28 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="business.Payment" table="PAYMENT">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <one-to-one name="user" class="business.User"></one-to-one>
+        <one-to-one name="order" class="business.Order"></one-to-one>
+        <property name="paymentTotal" type="double">
+            <column name="PAYMENTTOTAL" />
+        </property>
+        <property name="paymentDatetime" type="java.time.LocalDateTime">
+            <column name="PAYMENTDATETIME" />
+        </property>
+        <property name="paymentStatus" type="java.lang.String">
+            <column name="PAYMENTSTATUS" />
+        </property>
+    </class>
+</hibernate-mapping>
