@@ -82,7 +82,9 @@ public class OrderCartServlet extends HttpServlet {
 
 		String url = "/index.jsp";
 
-		if (action.contains("shop")) {
+		if (action.equals("go_to_register")) {
+			url = "/register.jsp";
+		} else if (action.contains("shop")) {
 			url = "/index.jsp";
 		} else if (action.contains("orderCart")) {
 

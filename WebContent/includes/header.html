@@ -4,22 +4,38 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="styles/singlePageTemplate.css" rel="stylesheet"
-	type="text/css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+<link rel="stylesheet" href="styles/application.css">
+<link rel="stylesheet" href="styles/bootstrap3panel.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 	<!-- Navigation -->
-	<header>
-		<a href="">
-			<h4 class="logo">Missouri Public Safety Communications Conference</h4>
-		</a>
-		<nav>
-			<ul>
-				<li><a href="/MPSCC911/">HOME</a></li>
-				<li><a href="#register">REGISTER</a></li>
-				<li><a href="#contact">CONTACT</a></li>
-			</ul>
-		</nav>
+	
+	
+	<header class="navbar navbar-expand navbar-dark bg-info">
+		<div class="container-fluid">
+			<div class="navbar-header">
+      			<div class="navbar-brand">Missouri Public Safety Communications Conference</div>
+      		</div>
+      		<ul class="nav navbar-nav navbar-right">
+      			<li class="nav-item"><a class="nav-link" href="/MPSCC911/">HOME</a></li>
+				<li class="nav-item">
+					<form id="register_from_navbar_form" 
+            					action="OrderCartServlet"
+							method="post" 
+							class="form-horizontal" 
+							role="form">
+					
+                       			<input type="hidden" name="action" value="go_to_register">  
+                           		<a class="nav-link" href="#" onclick="$(this).closest('form').submit(); return false;">REGISTER</a>
+					</form>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="#contact">CONTACT</a></li>
+    			</ul>
+		</div>
 	</header>
+	
+	<div style="padding-top: 35px;"></div>
 </body>
 </html>
