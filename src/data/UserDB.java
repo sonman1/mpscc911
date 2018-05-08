@@ -176,4 +176,75 @@ public class UserDB {
 		User u = selectUsername(username);
 		return u != null;
 	}
+
+	/**
+	 * Makes a call to the DB to select a specific user by username and password.
+	 * Prints out the result set and returns the user object
+	 * 
+	 * @param username
+	 * @param password
+	 */
+	public static User selectUserByUseridandPW(String username, String password) {
+
+		User user = new User();
+
+		Session session = DBUtil.getSessionFactory().openSession();
+		Transaction trans = null;
+
+		try {
+			trans = session.beginTransaction();
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<User> query = builder.createQuery(User.class);
+			Root<User> root = query.from(User.class);
+			query.select(root).where(builder.equal(root.get("username"), username))
+					.where(builder.equal(root.get("password"), password));
+			;
+			Query<User> q = session.createQuery(query);
+			System.out.println("Searching for object in DB.");
+			
+			User user1 = null;
+			user1 = q.setMaxResults(1).uniqueResult();
+
+			System.out.println("Checking if object found in DB");
+
+			if (user1 != null) {
+				// printing out values for testing purposes
+				System.out.println();
+				System.out.print("USERNAME \t");
+				System.out.print("FIRSTNAME \t");
+				System.out.print("LASTNAME \t");
+				System.out.print("EMAIL \t\t\t");
+				System.out.print("USER_TYPE \t\t");
+				System.out.print("PHONE \t\t");
+				System.out.print("ADDRESS_BILLING \t\t");
+				System.out.print("ADDRESS_SHIPPING \t\t");
+				System.out.println("\n------------------------------------------------------"
+						+ "------------------------------------------------------"
+						+ "------------------------------------------------------");
+
+				System.out.println(user1.getUsername() + "\t\t" + user1.getFirstName() + "\t\t" + user1.getLastName()
+						+ "\t" + user1.getEmail() + "\t" + user1.getUserType() + "\t" + user1.getPhone() + "\t"
+						+ user1.getAddressBilling() + "\t" + user1.getAddressShipping());
+
+				return user1;
+			} else {
+				System.out.println("User not found. Invalid user/password combination for: " + username);
+				return null;
+			}
+
+		} catch (NoResultException nre) {
+			System.out.println("User not found. Invalid user/password combination for: " + username);
+			return null;
+		} catch (HibernateException he) {
+			he.printStackTrace();
+			if (trans != null) {
+				trans.rollback();
+				return null;
+			}
+		} finally {
+			session.close();
+		}
+
+		return user;
+	} // end selectUserByUseridandPW
 }

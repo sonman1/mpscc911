@@ -250,8 +250,7 @@ public class OrderCartServlet extends HttpServlet {
 		// for debug
 		String jSessionId = session.getId();
 		System.out.println("In OrderCartServlet prior to forwarding. jSessionId: " + jSessionId);
-		System.out.println("\tsession name: " + session.getAttribute("name"));
-		System.out.println("\tsession email: " + session.getAttribute("email"));
+		System.out.println("\tsession user: " + session.getAttribute("currentSessionUser"));
 		System.out.println("\tsession orderCart: " + session.getAttribute("orderCart"));
 
 		// forward request/response

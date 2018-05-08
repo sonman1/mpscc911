@@ -25,50 +25,8 @@
 	<%@ page import="java.io.*"%>
 	<%@ page import="business.Product"%>
 	<%
-		ArrayList<Product> products = new ArrayList<Product>();
-		Product product1 = new Product();
-		product1.setId(1);
-		product1.setName("Shirt");
-		product1.setDescription("Best shirt to wear ever. It is hand-made and made out of pure silk. Great to wear" 
-				+ " during the summer.");
-		product1.setCostEach(30);
-		product1.setQuantity(50);
-		product1.setImage("https://static.boredpanda.com/blog/wp-content/uploads/2014/11/creative-t-shirts-29__605.jpg");
-		
-		Product product2 = new Product();
-		product2.setId(2);
-		product2.setName("Bag");
-		product2.setDescription("This bag lightweight and very durable. Great of taking grocery shopping or for" 
-				+ " just carrying things around.");
-		product2.setCostEach(70);
-		product2.setQuantity(40);
-		product2.setImage("https://makerist-production.s3.amazonaws.com/uploads/pattern/10506/featured_image/zoom_featured_image.jpg");
-		
-		
-		Product product3 = new Product();
-		product3.setId(3);
-		product3.setName("Coffee Mug");
-		product3.setDescription("Great gift for your dad or mom. Sure to make any drink taste good and feel great.");
-		product3.setCostEach(20);
-		product3.setQuantity(10);
-		product3.setImage("https://cremationdesigns.com/wp-content/uploads/2016/09/mug2-1200.jpg");
-		
-		Product product4 = new Product();
-		product4.setId(4);
-		product4.setName("Ring");
-		product4.setDescription("This is a ring and it looks really good. You should wear it.");
-		product4.setCostEach(100);
-		product4.setQuantity(80);
-		product4.setImage("https://cdn7.bigcommerce.com/s-77qyoan9x9/images/stencil/1280x1280/products/220/1449/morganite106_6__82230.1490349088.JPG?c=2&imbypass=on");
-		
-		
-		products.add(product1);
-		products.add(product2);
-		products.add(product3);
-		products.add(product4);
-		
+		ArrayList<Product> products = (ArrayList<Product>) session.getAttribute("allProducts");
 		pageContext.setAttribute("products", products);
-
 	%>
 	
 	<!-- Navigation -->

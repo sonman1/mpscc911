@@ -39,7 +39,7 @@
             	
             		<!-- Login Form -->
             		<form id="login_form" 
-            			action="OrderCartServlet"
+            			action="LoginServlet"
 					method="post" 
 					class="form-horizontal" 
 					role="form">
@@ -77,6 +77,7 @@
                 			<input type="submit" class="btn btn-success col-xs-12 col-sm-12 col-md-12 col-lg-12" value="Login">
                 		</div>
                 		
+						<h5>${msg}</h5>
                  <!-- Login Form Ends -->   
          		</form>  
          		
@@ -84,7 +85,7 @@
          		<div class="form-group">
              		<div class="col-md-12">
              			<form id="register_from_login_form" 
-            					action="OrderCartServlet"
+            					action="LoginServlet"
 							method="post" 
 							class="form-horizontal" 
 							role="form">
@@ -92,7 +93,7 @@
 					
 							<div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
                        			If you do not have an account, please sign up
-                       			<input type="hidden" name="action" value="go_to_register">  
+                       			<input type="hidden" name="action" value="register">  
                           		<a href="#" onclick="$(this).closest('form').submit(); return false;">
                                		here
                            		</a>

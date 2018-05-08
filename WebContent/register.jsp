@@ -39,7 +39,7 @@
             	
             		<!-- Register Form -->
             		<form id="register_form" 
-            			action="OrderCartServlet"
+            			action="RegistrationServlet"
 					method="post" 
 					class="form-horizontal" 
 					role="form">
@@ -49,7 +49,7 @@
 						<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
 							<input type="text" required
 								class="form-control"
-								name="firstname"
+								name="firstName"
 								placeholder="First Name"
 								aria-label="First Name"
 								oninvalid="this.setCustomValidity('First Name is required.')"
@@ -62,7 +62,7 @@
 						<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
 							<input type="text" required
 								class="form-control"
-								name="lastname"
+								name="lastName"
 								placeholder="Last Name"
 								aria-label="Last Name"
 								oninvalid="this.setCustomValidity('Last Name is required.')"
@@ -101,6 +101,7 @@
                 			<input type="submit" class="btn btn-primary col-xs-12 col-sm-12 col-md-12 col-lg-12" value="Register">
                 		</div>
                 		
+						<h5>${msg}</h5>
                   	
                  <!-- Register Form Ends -->   
          		</form>     
