@@ -107,19 +107,22 @@
 					</c:forEach>
 				</tbody>
 			</table>
-		</c:if>
 		
-		<div>
-			<h3 style="display: inline-table;">Total Cost
-				<div class="badge badge-success">
-					<c:out value="${orderCart.getTotalCurrencyFormat()}" />
-				</div> 
-			</h3>
-			<form action="OrderCartServlet" method="POST" style="display: inline-table; float: right;">
-				<input type="hidden" name="action" value="checkout" />
-				<button class="btn btn-primary" type="submit">Checkout</button>
-			</form>
-		</div>
+			<div>
+				<h3 style="display: inline-table;">Total Cost
+					<div class="badge badge-success">
+						<c:out value="${orderCart.getTotalCurrencyFormat()}" />
+					</div> 
+				</h3>
+				<form action="OrderCartServlet" method="POST" style="display: inline-table; float: right;">
+					<input type="hidden" name="action" value="checkout" />
+					<button class="btn btn-primary" type="submit">Checkout</button>
+				</form>
+			</div>
+		</c:if>
+		<c:if test="${empty orderCart.items}">
+			<h2 class="jumbotron" style="text-align: center;">Your Cart is Empty</h2>
+		</c:if>
 	</div>
 	
 	
