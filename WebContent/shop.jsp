@@ -52,7 +52,8 @@
               					<form action="OrderCartServlet" method="POST">
 									<input type="hidden" name="action" value="addToCart" />
 									<input type="hidden" name="productId" value="${product.id}" />
-									<button class="btn btn-primary" type="submit">Add To Cart</button>
+									<button class="btn btn-primary" type="submit" style="margin-right: 10px;">Add To Cart</button>
+									<c:out value="${product.quantity}" /> items in stock
 								</form>
             					</div>
           				</div>
