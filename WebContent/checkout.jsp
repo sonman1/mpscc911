@@ -49,7 +49,7 @@
             	
             		<!-- Payment Form -->
             		<form id="payment_form" 
-            			action="OrderServlet"
+            			action="OrderCartServlet"
 					method="post" 
 					class="" 
 					role="form">

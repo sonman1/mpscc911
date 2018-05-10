@@ -18,6 +18,9 @@ import data.UserDB;
 
 /**
  * Servlet implementation class LoginServlet
+ * 
+ * @version 1.0 2018-04-30
+ * @author Sonny Saxton
  */
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
@@ -92,7 +95,7 @@ public class LoginServlet extends HttpServlet {
 				allProducts = ProductDB.selectAllProducts();
 				session.setAttribute("allProducts", allProducts);
 				
-				url = "/shop.jsp";
+				url = "/home.jsp";
 
 			} else {
 				if (passwordAttempts < (Integer.parseInt(passwordMaxAttempts) - 1)) {

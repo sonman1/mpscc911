@@ -18,6 +18,9 @@ import data.UserDB;
 
 /**
  * Servlet implementation class RegistrationServlet
+ * 
+ * @version 1.0 2018-04-30
+ * @author Sonny Saxton
  */
 @WebServlet("/RegistrationServlet")
 public class RegistrationServlet extends HttpServlet {
@@ -63,7 +66,7 @@ public class RegistrationServlet extends HttpServlet {
 			String lastname = request.getParameter("lastName");
 			String email = request.getParameter("email"); // username is the same as email for now
 			String username = request.getParameter("email"); // username is the same as email for now
-			String password = request.getParameter("password"); // need hash strategy for password in production
+			String password = request.getParameter("password"); // would use hash strategy for password in production
 
 			// check if username exists first before entering new
 			if (UserDB.usernameExists(username) == false) {

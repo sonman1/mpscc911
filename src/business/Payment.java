@@ -2,6 +2,7 @@ package business;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -23,13 +24,9 @@ public class Payment implements Serializable {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userId", nullable = false)
 	private User user;
-    
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "orderId", nullable = false)
-	private Order order;
-    
+        
 	private double paymentTotal;
-	private LocalDateTime paymentDatetime;
+	private Date paymentDatetime;
 	private String paymentStatus;
 	
 	//  no arg constructor
@@ -48,22 +45,16 @@ public class Payment implements Serializable {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public Order getOrder() {
-		return order;
-	}
-	public void setOrder(Order order) {
-		this.order = order;
-	}
 	public double getPaymentTotal() {
 		return paymentTotal;
 	}
 	public void setPaymentTotal(double paymentTotal) {
 		this.paymentTotal = paymentTotal;
 	}
-	public LocalDateTime getPaymentDatetime() {
+	public Date getPaymentDatetime() {
 		return paymentDatetime;
 	}
-	public void setPaymentDatetime(LocalDateTime paymentDatetime) {
+	public void setPaymentDatetime(Date paymentDatetime) {
 		this.paymentDatetime = paymentDatetime;
 	}
 	public String getPaymentStatus() {

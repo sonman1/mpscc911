@@ -27,11 +27,7 @@
 	<%@ page import="java.io.*"%>
 	<%@ page import="business.User"%>
 	<%
-		User user = new User();
-		user.setFirstName("Tom");
-		user.setLastName("Hanks");
-		user.setEmail("t-hanks@emailing.com");
-		
+		User user = (User) session.getAttribute("currentSessionUser");
 		pageContext.setAttribute("user", user);
 	%>
 	

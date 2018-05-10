@@ -9,7 +9,6 @@
             <generator class="assigned" />
         </id>
         <one-to-one name="user" class="business.User"></one-to-one>
-        <one-to-one name="order" class="business.Order"></one-to-one>
         <property name="paymentTotal" type="double">
             <column name="PAYMENTTOTAL" />
         </property>

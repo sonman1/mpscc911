@@ -34,6 +34,9 @@
 	
 	<!-- Shop Items -->
 	<div class="container-fluid">
+	
+		<h5>${msg}</h5>
+		
 	<div class="row">
 	<c:if test="${not empty products}">
 		<c:forEach var="product" items="${products}">
@@ -50,8 +53,9 @@
               					<p class="card-text"><c:out value="${product.description}" /></p>
               					<h4 class="card-title">$<c:out value="${product.costEach}" /></h4>
               					<form action="OrderCartServlet" method="POST">
-									<input type="hidden" name="action" value="addToCart" />
+									<input type="hidden" name="action" value="orderCart" />
 									<input type="hidden" name="productId" value="${product.id}" />
+									<input type="hidden" name="quantity" value="1" />
 									<button class="btn btn-primary" type="submit" style="margin-right: 10px;">Add To Cart</button>
 									<c:out value="${product.quantity}" /> items in stock
 								</form>

@@ -25,38 +25,41 @@
 	<%@ page import="java.io.*"%>
 	<%@ page import="business.OrderCart, business.OrderLineItem"%>
 	<%
-		OrderLineItem oli1 = new OrderLineItem();
-		oli1.setCost(30);
-		oli1.setItem("Shirt");
-		oli1.setQuantity(2);
+// 		OrderLineItem oli1 = new OrderLineItem();
+// 		oli1.setCost(30);
+// 		oli1.setItem("Shirt");
+// 		oli1.setQuantity(2);
 		
-		OrderLineItem oli2 = new OrderLineItem();
-		oli2.setCost(70);
-		oli2.setItem("Bag");
-		oli2.setQuantity(5);
+// 		OrderLineItem oli2 = new OrderLineItem();
+// 		oli2.setCost(70);
+// 		oli2.setItem("Bag");
+// 		oli2.setQuantity(5);
 		
-		OrderLineItem oli3 = new OrderLineItem();
-		oli3.setCost(20);
-		oli3.setItem("Coffee Mug");
-		oli3.setQuantity(10);
+// 		OrderLineItem oli3 = new OrderLineItem();
+// 		oli3.setCost(20);
+// 		oli3.setItem("Coffee Mug");
+// 		oli3.setQuantity(10);
 		
-		OrderLineItem oli4 = new OrderLineItem();
-		oli4.setCost(100);
-		oli4.setItem("Ring");
-		oli4.setQuantity(1);
+// 		OrderLineItem oli4 = new OrderLineItem();
+// 		oli4.setCost(100);
+// 		oli4.setItem("Ring");
+// 		oli4.setQuantity(1);
 		
-		OrderCart orderCart = new OrderCart();
+// 		OrderCart orderCart = new OrderCart();
 		
-		ArrayList<OrderLineItem> orderLineItems = new ArrayList<OrderLineItem>();
-		orderLineItems.add(oli1);
-		orderLineItems.add(oli2);
-		orderLineItems.add(oli3);
-		orderLineItems.add(oli4);
+// 		ArrayList<OrderLineItem> orderLineItems = new ArrayList<OrderLineItem>();
+// 		orderLineItems.add(oli1);
+// 		orderLineItems.add(oli2);
+// 		orderLineItems.add(oli3);
+// 		orderLineItems.add(oli4);
 		
-		orderCart.setItems(orderLineItems);
+// 		orderCart.setItems(orderLineItems);
 		
+// 		pageContext.setAttribute("orderCart", orderCart);
+		
+		
+		OrderCart orderCart = (OrderCart) session.getAttribute("orderCart");
 		pageContext.setAttribute("orderCart", orderCart);
-		
 	%>
 	
 	
@@ -80,16 +83,18 @@
 							<td><c:out value="${orderLineItem.item}" /></td>
 							<td>
 								<form action="OrderCartServlet" method="POST" style="display: inline-table;">
-									<input type="hidden" name="action" value="reduceQuantity" />
+									<input type="hidden" name="action" value="orderSubtract" />
 									<input type="hidden" name="itemString" value="${orderLineItem.item}" />
+									<input type="hidden" name="quantityString" value="${orderLineItem.quantity - 1}" />
 									<button class="btn btn-danger" type="submit"><i class="fa fa-minus"></i></button>
 								</form>
 								<div style="display: inline-table; width: 30px; text-align: center;">
 										<c:out value="${orderLineItem.quantity}" />
 								</div>
 								<form action="OrderCartServlet" method="POST" style="display: inline-table;">
-									<input type="hidden" name="action" value="increaseQuantity" />
+									<input type="hidden" name="action" value="orderAdd" />
 									<input type="hidden" name="itemString" value="${orderLineItem.item}" />
+									<input type="hidden" name="quantityString" value="${orderLineItem.quantity + 1}" />
 									<button class="btn btn-primary" type="submit"><i class="fa fa-plus"></i></button>
 								</form>
 							</td>
@@ -98,8 +103,8 @@
 									<c:out value="${orderLineItem.getTotalCurrencyFormat()}" />
 								</div>
 								<form action="OrderCartServlet" method="POST" style="display: inline-table;">
-									<input type="hidden" name="action" value="removeItem" />
-									<input type="hidden" name="itemString" value="${orderLineItem.item}" />
+									<input type="hidden" name="action" value=orderCart />
+									<input type="hidden" name="removeItem" value="${orderLineItem.item}" />
 									<button class="btn btn-danger" type="submit"><i class="fa fa-times"></i></button>
 								</form>
 							</td>
@@ -118,6 +123,7 @@
 					<input type="hidden" name="action" value="checkout" />
 					<button class="btn btn-primary" type="submit">Checkout</button>
 				</form>
+						<h5>${msg}</h5>
 			</div>
 		</c:if>
 		<c:if test="${empty orderCart.items}">

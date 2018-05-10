@@ -11,22 +11,23 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-import business.Product;
+import business.Payment;
+import business.User;;
 
-public class ProductDB {
+public class PaymentDB {
 
 	/**
-	 * Inserts a product into DB
+	 * Inserts a payment into the DB
 	 * 
-	 * @param product
+	 * @param payment
 	 */
-	public static void insert(Product product) {
+	public static void insert(Payment payment) {
 		Session session = DBUtil.getSessionFactory().openSession();
 		Transaction trans = null;
 
 		try {
 			trans = session.beginTransaction();
-			session.save(product);
+			session.save(payment);
 			System.out.println("Object saved to DB.");
 			trans.commit();
 		} catch (HibernateException he) {
@@ -40,17 +41,17 @@ public class ProductDB {
 	}
 
 	/**
-	 * Updates a product into DB
+	 * Updates a payment into the DB
 	 * 
-	 * @param product
+	 * @param payment
 	 */
-	public static void update(Product product) {
+	public static void update(Payment payment) {
 		Session session = DBUtil.getSessionFactory().openSession();
 		Transaction trans = null;
 
 		try {
 			trans = session.beginTransaction();
-			session.merge(product);
+			session.merge(payment);
 			System.out.println("Object updated to DB.");
 			trans.commit();
 		} catch (HibernateException he) {
@@ -64,17 +65,17 @@ public class ProductDB {
 	}
 
 	/**
-	 * Deletes a product from DB
+	 * Deletes a payment from the DB
 	 * 
-	 * @param product
+	 * @param payment
 	 */
-	public static void delete(Product product) {
+	public static void delete(Payment payment) {
 		Session session = DBUtil.getSessionFactory().openSession();
 		Transaction trans = null;
 
 		try {
 			trans = session.beginTransaction();
-			session.remove(session.merge(product));
+			session.remove(session.merge(payment));
 			System.out.println("Object deleted from DB.");
 			trans.commit();
 		} catch (HibernateException he) {
@@ -89,26 +90,34 @@ public class ProductDB {
 	}
 
 	/**
-	 * Selects a product from DB using product name
+	 * List of payment for a user
 	 * 
-	 * @param productName
+	 * @param user
 	 * @return
 	 */
-	public static Product selectProduct(String productName) {
+	public static List<Payment> selectAllPaymentsByUsername(User user) {
 		Session session = DBUtil.getSessionFactory().openSession();
 		Transaction trans = null;
 
 		try {
 			trans = session.beginTransaction();
 			CriteriaBuilder builder = session.getCriteriaBuilder();
-			CriteriaQuery<Product> query = builder.createQuery(Product.class);
-			Root<Product> root = query.from(Product.class);
-			query.select(root).where(builder.equal(root.get("name"), productName));
-			Query<Product> q = session.createQuery(query);
-			Product product = q.getSingleResult();
-			System.out.println("Object found in DB, returning object.");
-			trans.commit();
-			return product;
+			CriteriaQuery<Payment> query = builder.createQuery(Payment.class);
+			Root<Payment> root = query.from(Payment.class);
+			System.out.println("Query payments for user: " + user);
+			query.select(root).where(builder.equal(root.get("user"), user));
+			Query<Payment> q = session.createQuery(query);
+			List<Payment> payments = q.getResultList();
+
+			System.out.println("Checking if payment exist for user: " + user);
+			if (payments != null) {
+				for (Payment payment : payments) {
+					System.out.println("\tPayment: " + payment);
+				}
+				return payments;
+			} else {
+				System.out.println("No payments found for user: " + user);
+			}
 		} catch (HibernateException he) {
 			he.printStackTrace();
 			if (trans != null) {
@@ -121,62 +130,28 @@ public class ProductDB {
 
 		return null;
 	}
-	
-	/**
-	 * Selects a product from DB using product Id
-	 * 
-	 * @param productName
-	 * @return
-	 */
-	public static Product selectProductById(String productId) {
+
+	// List of all line items in DB
+	public static List<Payment> selectAllPayments() {
 		Session session = DBUtil.getSessionFactory().openSession();
 		Transaction trans = null;
 
 		try {
 			trans = session.beginTransaction();
 			CriteriaBuilder builder = session.getCriteriaBuilder();
-			CriteriaQuery<Product> query = builder.createQuery(Product.class);
-			Root<Product> root = query.from(Product.class);
-			query.select(root).where(builder.equal(root.get("id"), productId));
-			Query<Product> q = session.createQuery(query);
-			Product product = q.getSingleResult();
-			System.out.println("Object found in DB, returning object.");
-			trans.commit();
-			return product;
-		} catch (HibernateException he) {
-			he.printStackTrace();
-			if (trans != null) {
-				trans.rollback();
-				return null;
-			}
-		} finally {
-			session.close();
-		}
-
-		return null;
-	}
-	
-	/**
-	 * List all products from DB
-	 * 
-	 * @return
-	 */
-	public static List<Product> selectAllProducts() {
-		Session session = DBUtil.getSessionFactory().openSession();
-		Transaction trans = null;
-
-		try {
-			trans = session.beginTransaction();
-			CriteriaBuilder builder = session.getCriteriaBuilder();
-			CriteriaQuery<Product> query = builder.createQuery(Product.class);
-			Root<Product> root = query.from(Product.class);
+			CriteriaQuery<Payment> query = builder.createQuery(Payment.class);
+			Root<Payment> root = query.from(Payment.class);
 			query.select(root);
-			Query<Product> q = session.createQuery(query);
-			List<Product> products = q.getResultList();
-			for (Product product : products) {
-				System.out.println(product.getName());
+			Query<Payment> q = session.createQuery(query);
+			List<Payment> payments = q.getResultList();
+			if (payments != null) {
+				for (Payment payment : payments) {
+					System.out.println("\tPayment: " + payment);
+				}
+			} else {
+				System.out.println("No payments found");
 			}
-			return products;
+			return payments;
 		} catch (HibernateException he) {
 			he.printStackTrace();
 			if (trans != null) {
@@ -191,13 +166,31 @@ public class ProductDB {
 	}
 
 	/**
-	 * Checks if product name already exists
+	 * Checks if payments exists yet for a user
 	 * 
-	 * @param productName
+	 * @param user
 	 * @return
 	 */
-	public static boolean productExists(String productName) {
-		Product u = selectProduct(productName);
-		return u != null;
+	public static boolean paymentsExistforUsername(User user) {
+		Session session = DBUtil.getSessionFactory().openSession();
+		Transaction trans = null;
+		List<Payment> payment = null;
+
+		try {
+			trans = session.beginTransaction();
+			System.out.println("Checking payments for matching users in DB.");
+			payment = selectAllPaymentsByUsername(user);
+			System.out.println("Payments for matching users: " + payment);
+		} catch (HibernateException he) {
+			he.printStackTrace();
+			if (trans != null) {
+				trans.rollback();
+				return false;
+			}
+		} finally {
+			session.close();
+		}
+
+		return payment.isEmpty() != true;
 	}
 }
