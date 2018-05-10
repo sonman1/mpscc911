@@ -35,12 +35,14 @@
 	<div id="siteHeader"></div>
 	
 	<div class="container-fluid">
+		<div class="jumbotron">
 		<h2>Confirmation</h2>
 		<div class="">
 			Thank you for shopping with us, <strong><c:out value="${user.firstName}" /> <c:out value="${user.lastName}" /></strong>.
 		</div>
 		<div>
 			Your confirmation email has been sent to <strong><c:out value="${user.email}" /></strong>
+		</div>
 		</div>
 	</div>
 	

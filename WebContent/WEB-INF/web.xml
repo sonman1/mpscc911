@@ -10,6 +10,58 @@
     <env-entry-type>java.lang.String</env-entry-type>
     <env-entry-value>5</env-entry-value>
   </env-entry>
+  
+  <security-constraint>
+	<web-resource-collection>
+		<web-resource-name>Home</web-resource-name>
+		<url-pattern>/home.jsp</url-pattern>
+	</web-resource-collection>
+	<user-data-constraint>
+		<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+	</user-data-constraint>
+  </security-constraint>
+  
+  <security-constraint>
+	<web-resource-collection>
+		<web-resource-name>Shop</web-resource-name>
+		<url-pattern>/shop.jsp</url-pattern>
+	</web-resource-collection>
+	<user-data-constraint>
+		<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+	</user-data-constraint>
+  </security-constraint>
+  
+  <security-constraint>
+	<web-resource-collection>
+		<web-resource-name>Cart</web-resource-name>
+		<url-pattern>/cart.jsp</url-pattern>
+	</web-resource-collection>
+	<user-data-constraint>
+		<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+	</user-data-constraint>
+  </security-constraint>
+  
+  <security-constraint>
+	<web-resource-collection>
+		<web-resource-name>Checkout</web-resource-name>
+		<url-pattern>/checkout.jsp</url-pattern>
+	</web-resource-collection>
+	<user-data-constraint>
+		<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+	</user-data-constraint>
+  </security-constraint>
+  
+  <security-constraint>
+	<web-resource-collection>
+		<web-resource-name>Confirmation</web-resource-name>
+		<url-pattern>/confirmation.jsp</url-pattern>
+	</web-resource-collection>
+	<user-data-constraint>
+		<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+	</user-data-constraint>
+  </security-constraint>
+  
+  
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>

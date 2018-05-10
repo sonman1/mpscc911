@@ -74,7 +74,8 @@
 					<tr>
 						<th>Item</th>
 						<th>Quantity</th>
-						<th>Cost</th>
+						<th>Cost Per Item</th>
+						<th>Total Cost</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -98,6 +99,7 @@
 									<button class="btn btn-primary" type="submit"><i class="fa fa-plus"></i></button>
 								</form>
 							</td>
+							<td>$<c:out value="${orderLineItem.cost}" /></td>
 							<td>
 								<div style="display: inline-table; width: 100px; text-align: left;">
 									<c:out value="${orderLineItem.getTotalCurrencyFormat()}" />

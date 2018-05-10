@@ -39,11 +39,11 @@
 
 	<!-- Navigation -->
 	<div id="siteHeader"></div>
-
+	
 	<div class="container-fluid">
-		<h2>MPSCC</h2>
+		<div class="jumbotron">
 
-		<h4 style="padding-top: 10px;">About Us</h4>
+		<h3 style="padding-top: 10px;">About Us</h3>
 		<div style="padding-top: 10px;">The Missouri Public Safety Conference is the
 			premier event in Missouri for public safety communications officials
 			working in 9-1-1, law enforcement, fire, EMS, and emergency operations
@@ -53,17 +53,18 @@
 			comprised of over 60 educational hours, chapter meetings, day and
 			evening events and dedicated exclusive time with commercial partners.
 			<br><br>
-			Co-sponsored by: 
+			<hr class="my-4">
+			<h5>Co-sponsored by: </h5>
 			<br>
-				Missouri Association Public Safety Communication Officers <a class="nav-link"
+				<strong>Missouri Association Public Safety Communication Officers</strong> <a class="nav-link"
 					style="display: inline-table; padding: 0px;"
 					href="http://moapco.org/">http://moapco.org/</a>
 			<br>
-				Missouri National Emergency Number Association <a class="nav-link"
+				<strong>Missouri National Emergency Number Association</strong> <a class="nav-link"
 					style="display: inline-table; padding: 0px;"
 					href="http://monena.org/">http://moapco.org/</a>
 			<br>
-				Missouri 911 Directors Association <a class="nav-link"
+				<strong>Missouri 911 Directors Association</strong> <a class="nav-link"
 					style="display: inline-table; padding: 0px;"
 					href="http://mo911da.org/">http://mo911da.org/</a>
 				
@@ -74,6 +75,7 @@
 					style="display: inline-table; padding: 0px;"
 					href="http://mpscc911.org/">http://mpscc911.org/</a>
 			</p>
+		</div>
 		</div>
 	</div>
 

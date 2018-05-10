@@ -35,7 +35,10 @@
 	<!-- Shop Items -->
 	<div class="container-fluid">
 	
-		<h5>${msg}</h5>
+		<c:if test="${not empty msg}">
+			<h5 class="alert alert-primary container">${msg}</h5>
+		</c:if>
+		
 		
 	<div class="row">
 	<c:if test="${not empty products}">
